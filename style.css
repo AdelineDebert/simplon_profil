@@ -1,0 +1,212 @@
+/**********************************
+      STYLE GENERAL
+*********************************/
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: "Ubuntu",Helvetica,sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background-color: #C9C9C9;
+  /*#E4E4E4*/
+}
+
+/**********************************
+      STYLE PAGE PROFIL
+*********************************/
+
+/**** Style header ****/
+
+.pageprofil article {
+  position: relative;
+}
+
+.pageprofil header {
+  width: 100%;
+	height: 70vh;
+  background-image: url(imageheader.jpg);
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+	-webkit-clip-path: polygon(0 0, 100% 0, 100% 70%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 0% 100%);
+  clip-path: url("header");
+  position: relative;
+}
+
+.pageprofil h1 {
+  font-size: 3.5em;
+  color: #ed1450;
+  top: 45vh;
+  left: 5vw;
+  position: absolute;
+  z-index: 1;
+}
+
+/**** Style bandeau de texte ****/
+
+.pageprofil #bandeautexte {
+  margin: 4vw auto;
+  height: 15vh;
+  width: 80vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pageprofil #bandeautexte h3 {
+  margin: 0 2vw;
+}
+
+.pageprofil #bandeautexte img {
+  width: 4vw;
+}
+
+#quotehaut {
+  align-self: flex-start;
+}
+
+#quotebas {
+  align-self: flex-end;
+}
+
+/**** Style profils ****/
+
+/*Alignement des blocs profils*/
+.pageprofil section {
+  margin: 2vw auto;
+  width: 90vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.blocprofil {
+  position: relative;
+  margin-bottom: 8vh;
+}
+
+.photofull {
+  width: 320px;
+}
+
+/*Aspect blocs profils*/
+.infosprofil {
+ position: absolute;
+ background-color: white;
+ z-index: 1;
+ width: 320px;
+ height: 388px;
+ top: 180px;
+ overflow-y: scroll;
+ padding: 100px 30px 30px 30px;
+ display: flex;
+ flex-direction: column;
+ -webkit-clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
+ clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
+}
+
+/*Style contenu blocs profils*/
+.photoronde, .chevron {
+  position: absolute;
+  z-index: 2;
+}
+
+.photoronde {
+ border-radius: 50%;
+ width: 90px;
+ height: 90px;
+ top: 32%;
+ left: 5%;
+}
+
+.chevron {
+  top: 37%;
+  left: 80%;
+}
+
+.infosprofil h2 {
+ font-weight: lighter;
+ margin: 0;
+}
+
+.portfolio {
+  color: #cb0b3e;
+  margin-bottom: 2vh;
+}
+
+.liengithub img, .liencodepen img, .chevron img, .cv img, .twitter img, .linkedin img, .email img {
+  width: 30px;
+  height: 30px;
+  margin: 3px;
+}
+
+.iconespro {
+  margin-bottom: 2vh;
+}
+
+.liengithub {
+  margin-right: 0.5vw;
+}
+
+.description{
+  font-size: 0.9em;
+  margin-bottom: 5vh;
+  text-align: justify;
+}
+
+.competences {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-bottom: 10vh;
+  margin-top: 10vh;
+}
+
+.competences > div {
+  margin-bottom: 5vh;
+}
+
+.langage{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  /*margin-bottom: 1vh;*/
+}
+
+.barreprogression{
+  background-color: #c9c9c9;
+  width: 160px;
+  height: 15px;
+}
+
+.langage h5 {
+  font-size: 0.9em;
+  margin: 0;
+}
+
+.avanceeprogression{
+  background-color:#cb0b3e;
+  width: 140px;
+  height: 15px;
+}
+.reseaux{
+  display: flex;
+  justify-content: center;
+}

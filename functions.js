@@ -4,10 +4,10 @@ var profils = [{
   gif2: "url gif2",
   photoMin: "url photo mini",
   nom: "DEBERT Adeline",
-  portfolio: "#",
+  portfolio: "monportfolio.fr",
   github: "#",
   codepen: "#",
-  competences: [{nom: "html", progression: 3},{nom: "js", progression: 2}],
+  competences: [{nom: "html", progression: 5},{nom: "js", progression: 1}],
   presentation: "Bonjour, moi c'est Adeline",
   reseaux: [{nom: "twitter", url: "#"}, {nom: "linkedin", url: "#"}]
 },
@@ -120,131 +120,185 @@ var profils = [{
   reseaux: [{nom: "twitter", url: "#"}, {nom: "linkedin", url: "#"}]
 }
 ];
-var div_blocprofil;
-var div_infosprofil;
-var img_chevron;
-var h2;
-var portfolio;
-var div_iconespro;
-var liengithub;
-var liencodepen;
-var div_description;
-var div_competences;
-var div_reseaux;
+
 
 function createProfil(){
-  console.log("je suis dans la fonction createprofil");
-  createDiv_blocprofil();
-  createDiv_infosprofil();
-  createImg_chevron();
-  createH2();
-  createPortfolio();
-  createDiv_iconespro();
-  createLienGithub();
-  createLienCodepen();
-  createDiv_description();
-  createDiv_competences();
-  createDiv_reseaux();
+  for (var i = 0; i< profils.length; i++){
+  createDiv_blocprofil(i);
+  createDiv_infosprofil(i);
+  createDiv_chevron(i);
+  createH2(i);
+  createPortfolio(i);
+  createDiv_iconespro(i);
+  createLienGithub(i);
+  createLienCodepen(i);
+  createDiv_description(i);
+  createDiv_competences(i);
+  createDiv_reseaux(i);
+  createGif(i);
+  // console.log("je suis dans la fonction createprofil");
+}
 }
 
 // -------------------------------------------------------------- Creation de la div container
 
 function createDiv_blocprofil(){
+var section = document.getElementById("profil");
   div_blocprofil = document.createElement("div");
   div_blocprofil.setAttribute("class", "blocprofil");
-  document.body.appendChild(div_blocprofil);
+  section.appendChild(div_blocprofil);
+  return div_blocprofil;
 }
 
 // --------------------------------------------------------------   Div contenant toutes les infos
 function createDiv_infosprofil(){
-  div_infosprofil = createElementPerso(div_blocprofil, div);
+  div_infosprofil = document.createElement("div");
+  div_blocprofil.appendChild(div_infosprofil);
   div_infosprofil.setAttribute("class", "infosprofil");
+  return div_infosprofil;
 }
 
 // ------------------------------------------------------------------ Le chevron pour descendre
-function createImg_chevron(){
-  img_chevron = createElementPerso(div_infosprofil, img);
+function createDiv_chevron(){
+  div_chevron = document.createElement("div");
+  div_blocprofil.appendChild(div_chevron);
+  div_chevron.setAttribute("class", "chevron");
+  var img_chevron = document.createElement("img");
+  div_chevron.appendChild(img_chevron);
   img_chevron.setAttribute("src", "chevron_bas.svg");
+  return div_chevron;
 }
 
 // ------------------------------------------------------------------- NOM Prenom
-function createH2(){
-  h2 = createElementPerso(div_infosprofil, h2);
-  h2.textContent = profils[0].nom;
+function createH2(i){
+  h2 = document.createElement("h2");
+  div_infosprofil.appendChild(h2);
+  h2.textContent = profils[i].nom;
+  return h2;
 }
 
 // -----------------------------------------------------------------------Lien vers le portfolio
-function createPortfolio(){
-  portfolio = createElementPerso(div_infosprofil, a);
+function createPortfolio(i){
+  portfolio = document.createElement("a");
+  div_infosprofil.appendChild(portfolio);
   portfolio.setAttribute("class", "portfolio");
-  portfolio.setAttribute("href","profils[0].portfolio");
-  portfolio.textContent = profils[0].portfolio;
+  portfolio.setAttribute("href","profils[i].portfolio");
+  portfolio.textContent = profils[i].portfolio;
+  return portfolio;
 }
 
 //----------------------------------------------------------------------- Container icones github/codepen
 function createDiv_iconespro(){
-  div_iconespro = createElementPerso(div_infosprofil, div);
+  div_iconespro = document.createElement("div");
+  div_infosprofil.appendChild(div_iconespro);
   div_iconespro.setAttribute("class", "iconespro");
+  return div_iconespro;
 }
 
 // ----------------------------------------------------------------------- Lien Github
-function createLienGithub(){
-  liengithub = createElementPerso(div_iconespro, a);
-  liengithub.setAttribute("href", "profils[0].github")
-  var imgGithub = createElementPerso(liengithub, img);
+function createLienGithub(i){
+  liengithub = document.createElement("a");
+  div_iconespro.appendChild(liengithub);
+  liengithub.setAttribute("href", profils[i].github);
+  liengithub.setAttribute("class", "liengithub");
+  var imgGithub = document.createElement("img");
+  liengithub.appendChild(imgGithub);
   imgGithub.setAttribute("src", "github.svg");
+  return liengithub;
 }
 
 // ------------------------------------------------------------------------ Lien Codepen
-function createLienCodepen(){
-  liencodepen = createElementPerso(div_iconespro, a);
-  liencodepen.setAttribute("href", "profils[0].codepen")
-  var imgCodepen= createElementPerso(liencodepen, img);
+function createLienCodepen(i){
+  liencodepen = document.createElement("a");
+  div_iconespro.appendChild(liencodepen);
+  liencodepen.setAttribute("href", "profils[i].codepen")
+  var imgCodepen= document.createElement("img");
+  liencodepen.appendChild(imgCodepen);
   imgCodepen.setAttribute("src", "codepen.svg");
+  return liencodepen;
 }
 
 //------------------------------------------------------------------------- Texte de présentation
-function createDiv_description(){
-  div_description = createElementPerso(div_infosprofil, div);
+function createDiv_description(i){
+  div_description = document.createElement("div");
+  div_infosprofil.appendChild(div_description);
   div_description.setAttribute("class", "description");
-  var p = createElementPerso(div_description, p);
-  p.textContent = profils[0].presentation;
+  var p = document.createElement("p");
+  div_description.appendChild(p);
+  p.textContent = profils[i].presentation;
+  return div_description;
 }
 
 //----------------------------------------------------------------------- Compétences
-function createDiv_competences(){
-  div_competences = createElementPerso(div_infosprofil, div);
-  competencesArray = profils[0].competences;
+function createDiv_competences(i){
+  div_competences = document.createElement("div");
+  div_infosprofil.appendChild(div_competences);
+  div_competences.setAttribute("class", "competences");
+  var competencesArray = profils[i].competences;
+  console.log("tableau de compétences : "+ competencesArray);
   for (var j = 0; j < competencesArray.length; j ++ ){
-    var langage = createElementPerso(div_competences, div);
+    var langage = document.createElement("div");
+    div_competences.appendChild(langage);
     langage.setAttribute("class", "langage");
-    var h5 = createElementPerso(langage, h5);
+    var h5 = document.createElement("h5");
+    langage.appendChild(h5);
     h5.textContent = competencesArray[j].nom;
-  //--------------------------------- AJOUTER LA BARRE DE PROGRESSION
-  }
+//-------------------------------------------------------------------------- barre de progression
+    var barreprogression = document.createElement("div");
+    div_competences.appendChild(barreprogression);
+    barreprogression.setAttribute("class", "barreprogression");
+    var barreprogressionWidth = 160;
+    var avanceeprogression = document.createElement("div");
+    avanceeprogression.setAttribute("class", "avanceeprogression");
+    console.log("progression "+competencesArray[j].progression);
+      if (competencesArray[j].progression === 1){
+        avanceeprogression.style.width = barreprogressionWidth / 5 + "px";
+      }else if (competencesArray[j].progression === 2){
+        avanceeprogression.style.width = barreprogressionWidth / 4 + "px";
+      }else if (competencesArray[j].progression === 3){
+        avanceeprogression.style.width = barreprogressionWidth / 3 + "px";
+      }else if (competencesArray[j].progression === 4){
+        avanceeprogression.style.width = barreprogressionWidth / 2 + "px";
+      }else{
+        avanceeprogression.style.width = barreprogressionWidth + "px";
+      }
+    barreprogression.appendChild(avanceeprogression);
+}
+  return div_competences;
 }
 
 // ----------------------------------------------------------------------------Réseaux sociaux
-function createDiv_reseaux(){
-  div_reseaux = createElementPerso(div_infosprofil, div);
-  reseauxArray = profils[0].reseaux;
+function createDiv_reseaux(i){
+  div_reseaux = document.createElement("div");
+  div_infosprofil.appendChild(div_reseaux);
+  div_reseaux.setAttribute("class", "reseaux");
+  var reseauxArray = profils[i].reseaux;
   for (var k = 0; k < reseauxArray.length; k ++){
-    var lienreseaux = createElementPerso(div_reseaux, a);
-    lienreseaux.setAttribute("class", "reseauxArray[k].nom");
+    var lienreseaux = document.createElement("a");
+    div_reseaux.appendChild(lienreseaux);
+    lienreseaux.setAttribute("class", reseauxArray[k].nom);
     lienreseaux.setAttribute("href", "reseauxArray[k].url");
-    var imgReseaux = createElementPerso(lienreseaux, img);
+    var imgReseaux = document.createElement("img");
+    lienreseaux.appendChild(imgReseaux);
     var cheminImg = reseauxArray[k].nom + ".svg";
-    imgReseaux.setAttribute("src", "cheminImg");
+    imgReseaux.setAttribute("src", cheminImg);
   }
+    return div_reseaux;
 }
 
-
+//----------------------------------------------------------------------------------gif de fond
+function createGif(){
+  gif = document.createElement("img");
+  div_blocprofil.appendChild(gif);
+  gif.setAttribute("src", "elodie.gif");
+  return gif;
+}
 
 // --------------------------------------------------------------------------Fonction création éléments
 
-function createElementPerso(conteneur, element){
-var element = document.createElement("element");
-conteneur.appendChild(element);
-}
+// function createElementPerso(conteneur, element){
+// var element = document.createElement("element");
+// conteneur.appendChild(element);
+// }
 
 // window.onload = createProfil();
