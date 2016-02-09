@@ -67,7 +67,7 @@ var profilsBase = [{
   portfolio: "#",
   github: "#",
   codepen: "#",
-  competences: [{nom: "html", progression: 3},{nom: "js", progression: 2}],
+  competences: [{nom: "html", progression: 3},{nom: "js", progression: 5}],
   presentation: "Bonjour, moi c'est David",
   reseaux: [{nom: "twitter", url: "#"}, {nom: "linkedin", url: "#"}]
 },
@@ -133,8 +133,9 @@ function createProfil(){
         profils.push(profilRand[0]);
 // ------------------------------------------------------------- Creation des Profils
   createDiv_blocprofil(i);
-  createDiv_infosprofil(i);
+  createPhotoronde(i);
   createDiv_chevron(i);
+  createDiv_infosprofil(i);
   createH2(i);
   createPortfolio(i);
   createDiv_iconespro(i);
@@ -156,6 +157,15 @@ var section = document.getElementById("profil");
   div_blocprofil.setAttribute("class", "blocprofil");
   section.appendChild(div_blocprofil);
   return div_blocprofil;
+}
+
+//---------------------------------------------------------------  Photo ronde
+function createPhotoronde(i){
+  photoronde = document.createElement("img");
+  div_blocprofil.appendChild(photoronde);
+  photoronde.setAttribute("src", profils[i].photoMin);
+  photoronde.setAttribute("class", "photoronde");
+  return photoronde;
 }
 
 // --------------------------------------------------------------   Div contenant toutes les infos
@@ -253,22 +263,22 @@ function createDiv_competences(i){
     h5.textContent = competencesArray[j].nom;
 //-------------------------------------------------------------------------- barre de progression
     var barreprogression = document.createElement("div");
-    div_competences.appendChild(barreprogression);
+    langage.appendChild(barreprogression);
     barreprogression.setAttribute("class", "barreprogression");
-    var barreprogressionWidth = 160;
+    var barreprogressionWidth = 32;
     var avanceeprogression = document.createElement("div");
     avanceeprogression.setAttribute("class", "avanceeprogression");
     console.log("progression "+competencesArray[j].progression);
       if (competencesArray[j].progression === 1){
-        avanceeprogression.style.width = barreprogressionWidth / 5 + "px";
-      }else if (competencesArray[j].progression === 2){
-        avanceeprogression.style.width = barreprogressionWidth / 4 + "px";
-      }else if (competencesArray[j].progression === 3){
-        avanceeprogression.style.width = barreprogressionWidth / 3 + "px";
-      }else if (competencesArray[j].progression === 4){
-        avanceeprogression.style.width = barreprogressionWidth / 2 + "px";
-      }else{
         avanceeprogression.style.width = barreprogressionWidth + "px";
+      }else if (competencesArray[j].progression === 2){
+        avanceeprogression.style.width = barreprogressionWidth * 2 + "px";
+      }else if (competencesArray[j].progression === 3){
+        avanceeprogression.style.width = barreprogressionWidth * 3 + "px";
+      }else if (competencesArray[j].progression === 4){
+        avanceeprogression.style.width = barreprogressionWidth * 4 + "px";
+      }else{
+        avanceeprogression.style.width = barreprogressionWidth *5 + "px";
       }
     barreprogression.appendChild(avanceeprogression);
 }
@@ -299,6 +309,7 @@ function createGif(){
   gif = document.createElement("img");
   div_blocprofil.appendChild(gif);
   gif.setAttribute("src", "elodie.gif");
+  gif.setAttribute("class", "photofull");
   return gif;
 }
 
