@@ -1,5 +1,5 @@
 
-var profils = [{
+var profilsBase = [{
   gif: "avatar-femme.jpg",
   gif2: "url gif2",
   photoMin: "url photo mini",
@@ -121,9 +121,17 @@ var profils = [{
 }
 ];
 
+var profils=[];
+var numbProfils=10;
 
 function createProfil(){
-  for (var i = 0; i< profils.length; i++){
+  for (var i = 0; i< numbProfils; i++){
+
+// ------------------------------------------------------------- Random des Profils
+    var indexRand = Math.floor(Math.random()*profilsBase.length);
+    var profilRand = profilsBase.splice(indexRand,1);
+        profils.push(profilRand[0]);
+// ------------------------------------------------------------- Creation des Profils
   createDiv_blocprofil(i);
   createDiv_infosprofil(i);
   createDiv_chevron(i);
@@ -211,7 +219,7 @@ function createLienGithub(i){
 function createLienCodepen(i){
   liencodepen = document.createElement("a");
   div_iconespro.appendChild(liencodepen);
-  liencodepen.setAttribute("href", "profils[i].codepen")
+  liencodepen.setAttribute("href", "profils[i].codepen");
   var imgCodepen= document.createElement("img");
   liencodepen.appendChild(imgCodepen);
   imgCodepen.setAttribute("src", "codepen.svg");
