@@ -1,3 +1,15 @@
+// function recupProfils(){
+//     var profilsBase = JSON.parse(this.responseText);
+//     console.log("on récupère : "+profilsBase);
+// }
+//
+// var requete = new XMLHttpRequest();
+// requete.onload = recupProfils;
+//
+// requete.open("get", "url.php", true);
+// requete.send();
+
+
 
 var profilsBase = [{
   gif: "avatar-femme.jpg",
@@ -7,7 +19,7 @@ var profilsBase = [{
   portfolio: "monportfolio.fr",
   github: "#",
   codepen: "#",
-  competences: [{nom: "html", progression: 5},{nom: "js", progression: 1}],
+  competences: [{nom: "html", progression: 5},{nom: "js", progression: 1}, {nom: "php", progression: 4},{nom: "jquery", progression: 5},{nom: "css", progression: 5},{nom: "nodejs", progression: 1}],
   presentation: "Bonjour, moi c'est Adeline",
   reseaux: [{nom: "twitter", url: "#"}, {nom: "linkedin", url: "#"}]
 },
@@ -127,32 +139,32 @@ var numbProfils=10;
 function createProfil(){
   for (var i = 0; i< numbProfils; i++){
 
-// ------------------------------------------------------------- Random des Profils
+    // ------------------------------------------------------------- Random des Profils
     var indexRand = Math.floor(Math.random()*profilsBase.length);
     var profilRand = profilsBase.splice(indexRand,1);
-        profils.push(profilRand[0]);
-// ------------------------------------------------------------- Creation des Profils
-  createDiv_blocprofil(i);
-  createPhotoronde(i);
-  createDiv_chevron(i);
-  createDiv_infosprofil(i);
-  createH2(i);
-  createPortfolio(i);
-  createDiv_iconespro(i);
-  createLienGithub(i);
-  createLienCodepen(i);
-  createDiv_description(i);
-  createDiv_competences(i);
-  createDiv_reseaux(i);
-  createGif(i);
-  // console.log("je suis dans la fonction createprofil");
-}
+    profils.push(profilRand[0]);
+    // ------------------------------------------------------------- Creation des Profils
+    createDiv_blocprofil(i);
+    createPhotoronde(i);
+    createDiv_chevron(i);
+    createDiv_infosprofil(i);
+    createH2(i);
+    createPortfolio(i);
+    createDiv_iconespro(i);
+    createLienGithub(i);
+    createLienCodepen(i);
+    createDiv_description(i);
+    createDiv_competences(i);
+    createDiv_reseaux(i);
+    createGif(i);
+    // console.log("je suis dans la fonction createprofil");
+  }
 }
 
 // -------------------------------------------------------------- Creation de la div container
 
 function createDiv_blocprofil(){
-var section = document.getElementById("profil");
+  var section = document.getElementById("profil");
   div_blocprofil = document.createElement("div");
   div_blocprofil.setAttribute("class", "blocprofil");
   section.appendChild(div_blocprofil);
@@ -248,43 +260,76 @@ function createDiv_description(i){
 }
 
 //----------------------------------------------------------------------- Compétences
+// function createDiv_competences(i){
+//   div_competences = document.createElement("div");
+//   div_infosprofil.appendChild(div_competences);
+//   div_competences.setAttribute("class", "competences");
+//   var competencesArray = profils[i].competences;
+//   console.log("tableau de compétences : "+ competencesArray);
+//   for (var j = 0; j < competencesArray.length; j ++ ){
+//     var langage = document.createElement("div");
+//     div_competences.appendChild(langage);
+//     langage.setAttribute("class", "langage");
+//     var h5 = document.createElement("h5");
+//     langage.appendChild(h5);
+//     h5.textContent = competencesArray[j].nom;
+//
+// //-------------------------------------------------------------------------- barre de progression
+//     var barreprogression = document.createElement("div");
+//     langage.appendChild(barreprogression);
+//     barreprogression.setAttribute("class", "barreprogression");
+//     var barreprogressionWidth = 32;
+//     var avanceeprogression = document.createElement("div");
+//     avanceeprogression.setAttribute("class", "avanceeprogression");
+//     console.log("progression "+competencesArray[j].progression);
+//       if (competencesArray[j].progression === 1){
+//         avanceeprogression.style.width = barreprogressionWidth + "px";
+//       }else if (competencesArray[j].progression === 2){
+//         avanceeprogression.style.width = barreprogressionWidth * 2 + "px";
+//       }else if (competencesArray[j].progression === 3){
+//         avanceeprogression.style.width = barreprogressionWidth * 3 + "px";
+//       }else if (competencesArray[j].progression === 4){
+//         avanceeprogression.style.width = barreprogressionWidth * 4 + "px";
+//       }else{
+//         avanceeprogression.style.width = barreprogressionWidth *5 + "px";
+//       }
+//     barreprogression.appendChild(avanceeprogression);
+// }
+//   return div_competences;
+// }
 function createDiv_competences(i){
   div_competences = document.createElement("div");
   div_infosprofil.appendChild(div_competences);
   div_competences.setAttribute("class", "competences");
   var competencesArray = profils[i].competences;
-  console.log("tableau de compétences : "+ competencesArray);
+
+
+
+
   for (var j = 0; j < competencesArray.length; j ++ ){
-    var langage = document.createElement("div");
-    div_competences.appendChild(langage);
-    langage.setAttribute("class", "langage");
-    var h5 = document.createElement("h5");
-    langage.appendChild(h5);
-    h5.textContent = competencesArray[j].nom;
-//-------------------------------------------------------------------------- barre de progression
-    var barreprogression = document.createElement("div");
-    langage.appendChild(barreprogression);
-    barreprogression.setAttribute("class", "barreprogression");
-    var barreprogressionWidth = 32;
-    var avanceeprogression = document.createElement("div");
-    avanceeprogression.setAttribute("class", "avanceeprogression");
-    console.log("progression "+competencesArray[j].progression);
-      if (competencesArray[j].progression === 1){
-        avanceeprogression.style.width = barreprogressionWidth + "px";
-      }else if (competencesArray[j].progression === 2){
-        avanceeprogression.style.width = barreprogressionWidth * 2 + "px";
-      }else if (competencesArray[j].progression === 3){
-        avanceeprogression.style.width = barreprogressionWidth * 3 + "px";
-      }else if (competencesArray[j].progression === 4){
-        avanceeprogression.style.width = barreprogressionWidth * 4 + "px";
-      }else{
-        avanceeprogression.style.width = barreprogressionWidth *5 + "px";
-      }
-    barreprogression.appendChild(avanceeprogression);
-}
+    function afficheLangages(){
+      var langage = document.createElement("div");
+      div_competences.appendChild(langage);
+      langage.setAttribute("class", "langage");
+      console.log(" competencesArray[j].nom avant le h5 dans le if: "+ competencesArray[j].nom);
+      var h5 = document.createElement("h5");
+      langage.appendChild(h5);
+      console.log(" competencesArray[j].nom danbs les if: "+ competencesArray[j].nom);
+      h5.textContent = competencesArray[j].nom;
+    }
+    if (competencesArray.length > 3){
+      competencesArray.splice(4);
+      console.log("dans le if competencesArray : "+competencesArray[j].nom);
+      // return competencesArray;
+      afficheLangages();
+    }else{
+      afficheLangages();
+    };
+
+  };
+
   return div_competences;
 }
-
 // ----------------------------------------------------------------------------Réseaux sociaux
 function createDiv_reseaux(i){
   div_reseaux = document.createElement("div");
@@ -301,7 +346,7 @@ function createDiv_reseaux(i){
     var cheminImg = reseauxArray[k].nom + ".svg";
     imgReseaux.setAttribute("src", cheminImg);
   }
-    return div_reseaux;
+  return div_reseaux;
 }
 
 //----------------------------------------------------------------------------------gif de fond
