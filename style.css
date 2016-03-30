@@ -106,10 +106,29 @@ body {
 .infosprofil {
  position: absolute;
  background-color: white;
+ transition: height 1s, top 1s;
  z-index: 1;
  width: 320px;
+ padding: 55px 30px 30px 30px;
  height: 348px;
  top: 220px;
+ overflow: hidden;
+ display: flex;
+ flex-direction: column;
+ -webkit-clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+ clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+}
+.infosprofil::after {
+  height: 178px;
+  top: 390px;
+}
+.infosprofil-ouvert {
+ position: absolute;
+ background-color: white;
+ transition: height 1s, top 1s;
+ z-index: 1;
+ width: 320px;
+ top: 0px;
  overflow-y: scroll;
  padding: 65px 30px 30px 30px;
  display: flex;
@@ -117,9 +136,13 @@ body {
  -webkit-clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
  clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
 }
+.infosprofil-ouvert::after {
+  height: 348px;
+  top: 220px;
+}
 
 /*Style contenu blocs profils*/
-.photoronde, .chevron {
+.photoronde, .chevron, .photoronde-ouvert, .chevron-ouvert {
   position: absolute;
   z-index: 2;
 }
@@ -130,14 +153,44 @@ body {
  height: 90px;
  top: 32%;
  left: 5%;
+ transition: top 1s;
+}
+.photoronde::after{
+  top: 62%;
+}
+.photoronde-ouvert {
+ border-radius: 50%;
+ width: 90px;
+ height: 90px;
+ transition: top 1s;
+ left: 5%;
+ top:0;
+}
+.photoronde-ouvert::after{
+ top: 32%;
 }
 
 .chevron {
   top: 42%;
   left: 80%;
+  transform: rotate(180deg);
+  transition: top 1s, transform 1s;
+}
+.chevron::after{
+  top: 72%;
+  transform: rotate(180deg);
+}
+.chevron-ouvert {
+  top: 0;
+  left: 80%;
+  transition: top 1s, transform 1s;
+}
+.chevron-ouvert::after{
+  top: 42%;
+  transform: rotate(180deg);
 }
 
-.infosprofil h2 {
+.infosprofil h2, .infosprofil-ouvert h2 {
  font-weight: lighter;
  margin: 0;
 }
@@ -147,13 +200,16 @@ body {
   margin-bottom: 2vh;
 }
 
-.liengithub img, .liencodepen img, .chevron img, .cv img, .twitter img, .linkedin img, .email img {
+.liengithub img, .liencodepen img, .chevron img, .chevron-ouvert img, .cv img, .twitter img, .linkedin img, .email img {
   width: 30px;
   height: 30px;
   margin: 3px;
 }
 
 .iconespro {
+  margin-bottom: 0;
+}
+.iconespro-ouvert {
   margin-bottom: 2vh;
 }
 
@@ -163,22 +219,37 @@ body {
 
 .description{
   font-size: 0.9em;
+  margin-bottom: 0;
+  text-align: justify;
+  display: none;
+}
+.description-ouvert{
+  font-size: 0.9em;
   margin-bottom: 4vh;
   text-align: justify;
 }
 
 .competences {
   display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 125px;
+  right: 30px;
+}
+.competences-ouvert {
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /*margin-bottom: 1vh;*/
 }
 
 .competences > div {
+  margin-bottom: 0;
+}
+.competences-ouvert > div {
   margin-bottom: 15px;
 }
 
-.langage {
+.langage, .langage-ouvert {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -186,12 +257,22 @@ body {
 }
 
 .barreprogression{
+  display: none;
+  background-color: #c9c9c9;
+  width: 160px;
+  height: 15px;
+}
+.barreprogression-ouvert{
   background-color: #c9c9c9;
   width: 160px;
   height: 15px;
 }
 
 .langage h5 {
+  font-size: 0.9em;
+  margin-left: 5px;
+}
+.langage-ouvert h5 {
   font-size: 0.9em;
   margin: 0;
 }
@@ -203,36 +284,59 @@ body {
 }
 
 .reseaux{
+  display: none;
+  justify-content: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.reseaux-ouvert{
   display: flex;
   justify-content: center;
   margin-top: 10px;
   margin-bottom: 20px;
 }
 
-/*Différences Firefox/Chrome */
-/*@media screen and (-webkit-min-device-pixel-ratio:0) {
+/*Différences sur Chrome */
+/*Bloc bas*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
   .infosprofil {
+    padding: 80px 30px 30px 30px;
+    height: 198px;
+    top: 370px;
+  }
+  .photoronde {
+   top: 64%;
+  }
+  .chevron {
+    top: 70%;
+  }
+  .competences {
+    top: 148px;
+    right: 30px;
+  }
+/*Bloc haut*/
+  .infosprofil-ouvert {
     padding: 100px 30px 30px 30px;
     height: 368px;
     top: 200px;
   }
-  .photoronde {
+  .photoronde-ouvert {
    top: 36%;
   }
-  .chevron {
+  .chevron-ouvert {
     top: 40%;
   }
-  .description{
+  .description-ouvert {
     margin-bottom: 5vh;
   }
-  .competences {
+  .competences-ouvert {
     margin-bottom: 10vh;
   }
-  .competences > div {
+  .competences-ouvert > div {
     margin-bottom: 30px;
   }
-  .reseaux{
+  .reseaux-ouvert {
     margin-top: 60px;
     margin-bottom: 20px;
   }
-}*/
+}
