@@ -152,7 +152,7 @@ function createProfil(){
     createLienGithub(i);
     createLienCodepen(i);
     createDiv_competencesFermee(i);
-    createGif();
+    createGif(i);
   }
 }
 
@@ -164,8 +164,10 @@ function animation_Profil(event){
   var new_photoRonde = document.getElementById("avatar"+u);
   var new_chevron = document.getElementById("chevron"+u);
   var new_icones = document.getElementById("icones"+u);
+  var gif_back = document.getElementById("img_back_"+u);
 
   if(new_chevron.classList.contains("chevron") === true){
+  gif_back.setAttribute("src", profil[u].prenom+"_actif.gif");
   var  removeDiv = document.getElementById('competences'+u);
   new_infosProfil.removeChild(removeDiv);
 
@@ -186,6 +188,7 @@ function animation_Profil(event){
 
   createDiv_reseaux(u);
 }else{
+  gif_back.setAttribute("src", profil[u].prenom+"_attente.gif");
   createDiv_competencesFermee(u);
 
   new_infosProfil.removeAttribute("class");
@@ -239,7 +242,7 @@ function createDiv_blocprofil(i){
 function createPhotoronde(i){
   photoronde = document.createElement("img");
   div_blocprofil.appendChild(photoronde);
-  photoronde.setAttribute("src", profils[i].photoMin);
+  photoronde.setAttribute("src", profils[i].prenom+ "_petite.png");
   photoronde.setAttribute("class", "photoronde");
   photoronde.setAttribute("id", "avatar"+i);
   return photoronde;
@@ -429,10 +432,11 @@ function createDiv_reseaux(i){
 }
 
 //----------------------------------------------------------------------------------gif de fond
-function createGif(){
+function createGif(i){
   gif = document.createElement("img");
   div_blocprofil.appendChild(gif);
-  gif.setAttribute("src", "elodie.gif");
+  gif.setAttribute("src", profil[i].prenom +"_attente.gif");
   gif.setAttribute("class", "photofull");
+  gif.setAttribute("id", "img_back_"+i);
   return gif;
 }
